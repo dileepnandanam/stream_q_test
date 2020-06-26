@@ -29,7 +29,7 @@ app = Flask(__name__)
 vs = VideoStream(src=-1).start()
 time.sleep(2.0)
 
-@app.route("/")
+@app.route("/index")
 def index():
 	# return the rendered template
 	return render_template("index.html")
@@ -108,7 +108,7 @@ def generate():
 		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
 			bytearray(encodedImage) + b'\r\n')
 
-@app.route("/video_feed")
+@app.route("/")
 def video_feed():
 	# return the response generated along with the specific media
 	# type (mime type)
