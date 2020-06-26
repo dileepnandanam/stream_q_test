@@ -62,7 +62,7 @@ def detect_motion(frameCount):
 		# if the total number of frames has reached a sufficient
 		# number to construct a reasonable background model, then
 		# continue to process the frame
-		if total > frameCount:
+		#if total > frameCount:
 			# detect motion in the image
 			#motion = md.detect(gray)
 
@@ -76,8 +76,8 @@ def detect_motion(frameCount):
 		
 		# update the background model and increment the total number
 		# of frames read thus far
-		md.update(gray)
-		total += 1
+		#md.update(gray)
+		#total += 1
 
 		# acquire the lock, set the output frame, and release the
 		# lock
