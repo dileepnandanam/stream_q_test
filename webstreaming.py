@@ -2,14 +2,14 @@
 # python webstreaming.py --ip 0.0.0.0 --port 8000
 
 # import the necessary packages
-from pyimagesearch.motion_detection import SingleMotionDetector
+#from pyimagesearch.motion_detection import SingleMotionDetector
 from imutils.video import VideoStream
 from flask import Response
 from flask import Flask
 from flask import render_template
 import threading
 import argparse
-import datetime
+#import datetime
 import imutils
 import time
 import cv2
@@ -41,7 +41,7 @@ def detect_motion(frameCount):
 
 	# initialize the motion detector and the total number of frames
 	# read thus far
-	md = SingleMotionDetector(accumWeight=0.1)
+	#md = SingleMotionDetector(accumWeight=0.1)
 	total = 0
 
 	# loop over frames from the video stream
@@ -50,14 +50,14 @@ def detect_motion(frameCount):
 		# convert the frame to grayscale, and blur it
 		frame = vs.read()
 		frame = imutils.resize(frame, width=400)
-		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-		gray = cv2.GaussianBlur(gray, (7, 7), 0)
+		#gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		#gray = cv2.GaussianBlur(gray, (7, 7), 0)
 
 		# grab the current timestamp and draw it on the frame
-		timestamp = datetime.datetime.now()
-		cv2.putText(frame, timestamp.strftime(
-			"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
-			cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+		#timestamp = datetime.datetime.now()
+		#cv2.putText(frame, timestamp.strftime(
+		#	"%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
+		#	cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
 
 		# if the total number of frames has reached a sufficient
 		# number to construct a reasonable background model, then
