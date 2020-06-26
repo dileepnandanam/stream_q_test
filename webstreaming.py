@@ -64,15 +64,15 @@ def detect_motion(frameCount):
 		# continue to process the frame
 		if total > frameCount:
 			# detect motion in the image
-			motion = md.detect(gray)
+			#motion = md.detect(gray)
 
 			# cehck to see if motion was found in the frame
-			if motion is not None:
+			#if motion is not None:
 				# unpack the tuple and draw the box surrounding the
 				# "motion area" on the output frame
-				(thresh, (minX, minY, maxX, maxY)) = motion
-				cv2.rectangle(frame, (minX, minY), (maxX, maxY),
-					(0, 0, 255), 2)
+				#(thresh, (minX, minY, maxX, maxY)) = motion
+				#cv2.rectangle(frame, (minX, minY), (maxX, maxY),
+				#	(0, 0, 255), 2)
 		
 		# update the background model and increment the total number
 		# of frames read thus far
