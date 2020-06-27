@@ -26,7 +26,7 @@ app = Flask(__name__)
 # initialize the video stream and allow the camera sensor to
 # warmup
 #vs = VideoStream(usePiCamera=1).start()
-vs = VideoStream(src=-1).start()
+vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 @app.route("/index")
@@ -84,29 +84,24 @@ def detect_motion(frameCount):
 		with lock:
 			outputFrame = frame.copy()
 		
+
 def generate():
-	# grab global references to the output frame and lock variables
 	global outputFrame, lock
 
+	outputFrame = vs.read()
+	outputFrame = imutils.resize(outputFrame, width=400)
 	# loop over frames from the output stream
-	while True:
-		# wait until the lock is acquired
-		with lock:
-			# check if the output frame is available, otherwise skip
-			# the iteration of the loop
-			if outputFrame is None:
-				continue
+	while True:		
+		(flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
 
-			# encode the frame in JPEG format
-			(flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
-
-			# ensure the frame was successfully encoded
-			if not flag:
-				continue
+		# ensure the frame was successfully encoded
+		if not flag:
+			continue
 
 		# yield the output frame in the byte format
 		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
 			bytearray(encodedImage) + b'\r\n')
+
 
 @app.route("/")
 def video_feed():
